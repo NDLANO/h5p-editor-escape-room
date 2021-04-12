@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import GoToScene from "./Selector/GoToScene";
 import {createSceneForm, getDefaultSceneParams} from "../../../h5phelpers/forms/sceneForm";
 import {H5PContext} from "../../../context/H5PContext";
+import PasswordSceneLock from "../PasswordSceneLock";
 
 export default class GoToSceneWrapper extends Component {
   constructor(props) {
@@ -60,6 +61,14 @@ export default class GoToSceneWrapper extends Component {
     });
   }
 
+  setScenePassword(password) {
+    // Update password widget and params
+    const scenePasswordWidget = this.props.scenePasswordWidget;
+    scenePasswordWidget.$input.val(password);
+    this.props.params.action.params.scenePassword = password;
+    this.props.selectedScene();
+  }
+
   render() {
     const classes = ['go-to-scene-wrapper'];
     if (this.state.isCreatingNewScene) {
@@ -78,6 +87,8 @@ export default class GoToSceneWrapper extends Component {
             newScene={this.createNewScene.bind(this)}
             setNextSceneId={this.setNextSceneId.bind(this)}
           />
+        }
+        {<PasswordSceneLock setScenePassword={this.setScenePassword.bind(this)} params={this.props.params}/>
         }
         <div ref={this.newScene} />
       </div>

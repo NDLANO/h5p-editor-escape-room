@@ -14,6 +14,7 @@ import {
 } from "../../h5phelpers/forms/interactionForm";
 import GoToSceneWrapper from "./GoToScene/GoToSceneWrapper";
 import {sanitizeSceneForm, validateSceneForm} from "../../h5phelpers/forms/sceneForm";
+import PasswordSceneLock from "./PasswordSceneLock";
 
 export const InteractionEditingType = {
   NOT_EDITING: null,
@@ -109,7 +110,7 @@ export default class InteractionEditor extends React.Component {
   handleDone() {
     const interactionIndex = this.props.editingInteraction;
     let interactionPosition = null;
-
+console.log("wwwwwwww")
     // Set default position if new interaction
     if (interactionIndex === InteractionEditingType.NEW_INTERACTION) {
       interactionPosition = this.getDefaultInteractionPosition();
@@ -125,7 +126,7 @@ export default class InteractionEditor extends React.Component {
 
     this.params = sanitizeInteractionParams(this.params, interactionPosition);
     const isValid = validateInteractionForm(this.children);
-
+console.log(isValid)
     // Return to form with error messages if form is invalid
     if (!isValid) {
       this.setState({
@@ -197,6 +198,7 @@ export default class InteractionEditor extends React.Component {
             selectedScene={this.removeInputErrors.bind(this)}
             hasInputError={this.state.hasInputError}
             nextSceneIdWidget={this.children[1].children[0]}
+            scenePasswordWidget={this.children[1].children[1]}
             currentScene={this.props.currentScene}
             params={this.params}
             setScene={this.setScene.bind(this)}
