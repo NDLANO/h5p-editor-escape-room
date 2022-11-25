@@ -3,8 +3,10 @@ src
 .babelrc
 .gitignore
 .h5pignore
+.github
 package.json
 package-lock.json
 README.md
 TODOs.md
 webpack.config.js
+tsconfig.json
