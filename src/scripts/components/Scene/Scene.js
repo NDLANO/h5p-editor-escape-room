@@ -75,9 +75,23 @@ export default class Scene extends React.Component {
       return;
     }
 
+    let params = {};
+    if (this.context.parent instanceof H5PEditor.Form) {
+      // Content is run standalone
+      params = this.context.parent.params;
+    }
+    else if (this.context.parent instanceof H5PEditor.Library) {
+      // Content is run as subcontent
+      params = this.context.parent.params.params;
+    }
+    else {
+      // Should never happen
+      console.error('Virtual Tour: Parent is not main form or library');
+    }
+
     this.preview = initializeThreeSixtyPreview(
       this.previewRef.current,
-      this.context.parent.params,
+      params,
       {
         edit: this.context.t('edit'),
         delete: this.context.t('delete'),
