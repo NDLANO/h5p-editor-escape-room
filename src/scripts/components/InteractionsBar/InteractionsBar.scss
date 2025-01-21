@@ -118,4 +118,10 @@
     font-size: 0.8em;
     content: $crossword;
   }
+  
+  .h5p-iframeembed:before {
+    font-family: '360-image';
+    font-size: 0.8em;
+    content: $embed;
+  }
 }
