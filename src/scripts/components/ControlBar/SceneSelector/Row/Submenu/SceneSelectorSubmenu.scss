@@ -1,4 +1,4 @@
-@import '@styles/icons.scss';
+@use '@styles/icons.scss';
 
 .scene-selector-submenu {
   display: inline-block;
@@ -51,23 +51,23 @@
   }
 
   .set-start-scene:before {
-    content: $setStartScene
+    content: icons.$setStartScene
   }
 
   .jump:before {
-    content: $goToScene;
+    content: icons.$goToScene;
   }
 
   .edit:before {
-    content: $edit;
+    content: icons.$edit;
   }
 
   .clone:before {
-    content: $clone;
+    content: icons.$clone;
   }
 
   .delete:before {
-    content: $delete;
+    content: icons.$delete;
     color: #d63129;
   }
 

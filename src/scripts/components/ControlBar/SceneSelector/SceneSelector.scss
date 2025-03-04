@@ -1,4 +1,4 @@
-@import '@styles/icons.scss';
+@use '@styles/icons.scss';
 
 .scene-selector-wrapper {
   position: relative;
@@ -63,5 +63,5 @@
 
 .h5p-select-handle:before {
   font-family: "360-image";
-  content: $dropdown;
+  content: icons.$dropdown;
 }
