@@ -169,7 +169,7 @@ export default class InteractionEditor extends React.Component {
         sceneType: scene.sceneType,
         cameraPos: scene.cameraStartPosition,
         previewSize: this.props.scenePreview.getRect(),
-        previousSceneType: '360' // This may need to be expanded to potentially reflect 'panorama', too.
+        previousSceneType: scene.sceneType
       });
     }
 
