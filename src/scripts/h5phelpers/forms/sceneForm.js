@@ -150,14 +150,27 @@ export const sanitizeInteractionGeometry = ({
   previewSize.width = previewSize.width ?? 100;
   previewSize.height = previewSize.height ?? 100;
 
+  // TODO: There should be a distinction between 360 and static!
   let minWidth = DEFAULT_HOTSPOT_MIN_WIDTH;
   let minHeight = DEFAULT_HOTSPOT_MIN_HEIGHT;
   let maxWidth = DEFAULT_HOTSPOT_MAX_WIDTH;
   let maxHeight = DEFAULT_HOTSPOT_MAX_HEIGHT;
 
   let targetWidth, targetHeight;
-  const [width, height] = (interaction.hotspotSettings.hotSpotSizeValues || '')
+  let [width, height] = (interaction.hotspotSettings.hotSpotSizeValues || '')
     .split(',');
+
+  /*
+   * This is merely a hotfix.
+   * TODO: Set all default values in a central place and fetch from there across editor/view.
+   */
+  if (sceneType === 'static' && width === '256' && height === '128') {
+    /*
+     * Default values are pixel values meant for 360 scenes set in the view's sanitization
+     * function. These are not appropriate for static scenes which use percentage values.
+     */
+    interaction.hotspotSettings.hotSpotSizeValues = `${25},${25}`;
+  }
 
   if (typeof previousSceneType !== 'string' || previousSceneType === sceneType) {
     return; // Scene type did not change
