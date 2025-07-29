@@ -1,4 +1,4 @@
-@import '@styles/icons.scss';
+@use '@styles/icons';
 
 .h5p-scene-row {
   padding: 0.625em;
@@ -60,7 +60,7 @@
 
     &:before {
       font-family: "360-image";
-      content: $staticScene;
+      content: icons.$staticScene;
       position: absolute;
       background: white;
       left: 0.2em;
@@ -81,7 +81,7 @@
   }
 
   &.three-sixty .thumbnail-wrapper:before {
-    content: $threeSixtyScene;
+    content: icons.$threeSixtyScene;
   }
 
   .scene-wrapper {

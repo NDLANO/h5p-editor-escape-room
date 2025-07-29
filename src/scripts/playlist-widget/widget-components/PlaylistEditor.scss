@@ -1,8 +1,8 @@
-@import '@styles/icons.scss';
+@use '@styles/icons';
 
 .h5p-editing-dialog-header {
   .title.playlist:before {
-    content: $playlist;
+    content: icons.$playlist;
   }
 }
 .choose-playlist-editor {

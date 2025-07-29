@@ -1,4 +1,4 @@
-@import "@styles/icons.scss";
+@use "@styles/icons";
 
 .h5p-interactions-bar {
   padding: 0.5em;
@@ -65,7 +65,7 @@
   .h5p-gotoscene:before {
     font-family: '360-image';
     font-size: 0.8em;
-    content: $goToScene;
+    content: icons.$goToScene;
   }
 
   .h5p-advancedtext:before {
@@ -73,15 +73,15 @@
   }
 
   .h5p-image:before {
-    content: $image;
+    content: icons.$image;
   }
 
   .h5p-audio:before {
-    content: $audio;
+    content: icons.$audio;
   }
 
   .h5p-video:before {
-    content: $video;
+    content: icons.$video;
   }
 
   .h5p-imageslider:before,
@@ -90,7 +90,7 @@
   .h5p-blanks:before,
   .h5p-summary:before {
     font-family: "H5PFontIcons";
-    content: $summary;
+    content: icons.$summary;
     font-size: 1.45em;
     position: absolute;
     top: 0.46em;
@@ -98,30 +98,30 @@
   }
 
   .h5p-singlechoiceset:before {
-    content: $singleChoiceSet;
+    content: icons.$singleChoiceSet;
   }
 
   .h5p-multichoice:before {
-    content: $multiChoice;
+    content: icons.$multiChoice;
   }
 
   .h5p-imageslider:before {
-    content: $imageSlider;
+    content: icons.$imageSlider;
   }
 
   .h5p-blanks:before {
-    content: $blanks;
+    content: icons.$blanks;
   }
 
   .h5p-crossword:before {
     font-family: '360-image';
     font-size: 0.8em;
-    content: $crossword;
+    content: icons.$crossword;
   }
-  
+
   .h5p-threedmodel:before {
     font-family: '360-image';
     font-size: 0.8em;
-    content: $threedmodel;
+    content: icons.$threedmodel;
   }
 }
