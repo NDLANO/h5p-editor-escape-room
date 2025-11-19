@@ -128,5 +128,10 @@ PlaylistEditor.propTypes = {
   editingPlaylist: PropTypes.string.isRequired,
   doneAction: PropTypes.func.isRequired,
   removeAction: PropTypes.func.isRequired,
-  resize: PropTypes.func
+  resize: PropTypes.func,
+  translate: PropTypes.func.isRequired,
+  playlists: PropTypes.arrayOf(PropTypes.shape({
+    playlistId: PropTypes.string,
+  })).isRequired,
+  context: PropTypes.object.isRequired,
 };

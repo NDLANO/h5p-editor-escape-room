@@ -5,6 +5,7 @@ import ChoosePlaylistWrapper from './widget-components/ChoosePlaylist/ChoosePlay
 import PlaylistEditor, {
   PlaylistEditingType,
 } from './widget-components/PlaylistEditor.js';
+import PropTypes from 'prop-types';
 import './widget.scss';
 
 /** @typedef {{ playlistId: string, title: string, audioTracks: object }} Playlist */
@@ -520,3 +521,13 @@ class PlaylistWidgetComponent extends React.Component {
 }
 
 H5PEditor.widgets.playlist = PlaylistWidget;
+
+PlaylistWidgetComponent.propTypes = {
+  form: PropTypes.object.isRequired,
+  setValue: PropTypes.func.isRequired,
+  playlistId: PropTypes.string,
+  label: PropTypes.string,
+  description: PropTypes.string,
+  canEdit: PropTypes.bool.isRequired,
+  resize: PropTypes.func.isRequired,
+};

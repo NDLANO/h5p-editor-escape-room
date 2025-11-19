@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NoScene from './NoScene';
+import NoScene from './NoScene.js';
 import { H5PContext } from '@context/H5PContext.js';
 import { initializeThreeSixtyPreview } from '@h5phelpers/h5pComponents.js';
 import './Scene.scss';
@@ -145,5 +145,6 @@ Scene.propTypes = {
   hasOverlay: PropTypes.bool,
   currentScene: PropTypes.number,
   sceneIsInitialized: PropTypes.func.isRequired,
-  setScenePreview: PropTypes.func.isRequired
+  setScenePreview: PropTypes.func.isRequired,
+  onCloseOverlay: PropTypes.func.isRequired,
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaylistList from './List/PlaylistList';
+import PlaylistList from './List/PlaylistList.js';
 import './ChoosePlaylistSelector.scss';
 
 /**

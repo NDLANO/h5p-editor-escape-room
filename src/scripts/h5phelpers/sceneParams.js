@@ -1,5 +1,5 @@
 import { SceneEditingType } from '@components/EditingDialog/SceneEditor.js';
-import { isGoToScene } from './libraryParams';
+import { isGoToScene } from './libraryParams.js';
 
 /** @typedef {{ playlistId: string, title: string, audioTracks: object }} Playlist */
 /** @typedef {{ playlist: Playlist }} Scene */

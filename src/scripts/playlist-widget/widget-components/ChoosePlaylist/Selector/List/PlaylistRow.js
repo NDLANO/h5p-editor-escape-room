@@ -102,6 +102,7 @@ PlaylistRow.propTypes = {
     audioTracks: PropTypes.arrayOf(PropTypes.shape({
       path: PropTypes.string,
     })),
+    playlistId: PropTypes.string.isRequired,
   }),
   isMarkedPlaylist: PropTypes.bool,
   isShowingCheck: PropTypes.bool,
@@ -109,4 +110,5 @@ PlaylistRow.propTypes = {
   onPlaylistClick: PropTypes.func,
   onTitleClick: PropTypes.func,
   children: PropTypes.node,
+  playlistId: PropTypes.string,
 };

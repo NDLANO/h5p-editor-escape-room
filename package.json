@@ -18,8 +18,7 @@
     "@types/react-dom": "^19.1.7",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
-    "eslint": "^8.56.0",
-    "eslint-config-ndla-h5p": "github:NDLANO/eslint-config-ndla-h5p",
+    "eslint-config-ndla-h5p": "file:../eslint-config-ndla-h5p",
     "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-react": "^7.37.5",
     "mini-css-extract-plugin": "^2.9.2",
@@ -41,5 +40,6 @@
     "Frode Petterson <frode.petterson@joubel.com> (https://github.com/icc)",
     "Thomas Marstrander <thomas.marstrander@joubel.com> (https://github.com/thomasmars)"
   ],
-  "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead"
+  "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead",
+  "type": "module"
 }

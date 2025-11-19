@@ -120,7 +120,8 @@ SceneRow.propTypes = {
     scenesrc: PropTypes.shape({
       path: PropTypes.string.isRequired,
       alt: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    sceneId: PropTypes.number.isRequired,
   }),
   isMarkedScene: PropTypes.bool,
   isShowingCheck: PropTypes.bool,

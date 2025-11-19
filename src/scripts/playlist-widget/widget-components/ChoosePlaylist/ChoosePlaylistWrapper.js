@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ChoosePlaylist from './Selector/ChoosePlaylist';
+import ChoosePlaylist from './Selector/ChoosePlaylist.js';
 import { H5PContext } from '@context/H5PContext.js';
 
 export default class ChoosePlaylistWrapper extends Component {
@@ -70,4 +70,10 @@ ChoosePlaylistWrapper.propTypes = {
   nextPlaylistIdWidget: PropTypes.object,
   hasInputError: PropTypes.bool,
   selectedPlaylist: PropTypes.func,
+  editPlaylist: PropTypes.func,
+  canEdit: PropTypes.bool,
+  playlists: PropTypes.arrayOf(PropTypes.object),
+  noPlaylistsTranslation: PropTypes.string.isRequired,
+  translate: PropTypes.func.isRequired,
+  markedPlaylist: PropTypes.string,
 };

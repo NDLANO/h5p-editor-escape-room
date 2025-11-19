@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { H5PContext } from '@context/H5PContext.js';
-import ChoosePlaylistSelector from './ChoosePlaylistSelector';
+import ChoosePlaylistSelector from './ChoosePlaylistSelector.js';
 import './ChoosePlaylist.scss';
 
 export default class ChoosePlaylist extends Component {
@@ -44,4 +44,6 @@ ChoosePlaylist.propTypes = {
   markedPlaylist: PropTypes.string,
   hasInputError: PropTypes.bool,
   setNextPlaylistId: PropTypes.func,
+  playlists: PropTypes.arrayOf(PropTypes.object),
+  noPlaylistsTranslation: PropTypes.string.isRequired,
 };
