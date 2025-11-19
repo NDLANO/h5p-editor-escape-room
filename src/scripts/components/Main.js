@@ -232,7 +232,7 @@ export default class Main extends React.Component {
 
   /**
    * Remove interaction
-   * @param {*} [interactionIndex] Index of interaction to be removed.
+   * @param {number|null} [interactionIndex] Index of interaction to be removed.
    */
   confirmRemoveInteraction(interactionIndex = null) {
     let editingInteraction = interactionIndex;
