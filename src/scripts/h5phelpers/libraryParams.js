@@ -1,4 +1,4 @@
-import { getSceneFromId } from './sceneParams';
+import { getSceneFromId } from './sceneParams.js';
 
 /** @typedef {{ playlistId: string, title: string, audioTracks: object }} Playlist */
 /** @typedef {{ playlist: Playlist }} Scene */

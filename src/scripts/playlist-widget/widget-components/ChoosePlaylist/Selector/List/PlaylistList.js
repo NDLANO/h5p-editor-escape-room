@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import PlaylistRow from './PlaylistRow';
+import PlaylistRow from './PlaylistRow.js';
 
 /**
  * @param {object} props Props (React).

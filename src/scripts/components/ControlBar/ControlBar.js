@@ -112,4 +112,5 @@ ControlBar.propTypes = {
   editScene: PropTypes.func.isRequired,
   cloneScene: PropTypes.func.isRequired,
   deleteScene: PropTypes.func.isRequired,
+  isInStartingPosition: PropTypes.bool.isRequired,
 };

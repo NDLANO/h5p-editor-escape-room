@@ -285,4 +285,5 @@ InteractionEditor.propTypes = {
   ]),
   doneAction: PropTypes.func.isRequired,
   removeAction: PropTypes.func.isRequired,
+  scenePreview: PropTypes.object.isRequired,
 };

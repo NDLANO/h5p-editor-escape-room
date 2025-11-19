@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import SceneRow from './Row/SceneRow';
+import SceneRow from './Row/SceneRow.js';
 
 /**
  * @class
