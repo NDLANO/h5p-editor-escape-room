@@ -4,15 +4,16 @@
 
   align-items: stretch;
   box-sizing: border-box;
-  color: var(--color-text-primary);
-  display: flex;
-  font-size: calc(0.8 * var(--font-size-m));
-  user-select: none;
   background: var(--color-alternative-base);
   border: var(--border-width) solid var(--color-alternative-base);
   border-bottom-color: var(--color-alternative-dark);
   border-radius: var(--border-radius-medium);
   box-shadow: 0 1px 0 0 var(--color-alternative-dark);
+  color: var(--color-text-primary);
+  display: flex;
+  font-size: calc(0.8 * var(--font-size-m));
+  list-style: none;
+  user-select: none;
 
   &:hover, &[data-dnd-dragging="true"], &:focus-within {
     background: var(--color-alternative-dark);
@@ -30,6 +31,8 @@
 
   .h5p-escape-room-editor-contents-list-item-handle {
     background-color: color-mix(in srgb, var(--color-alternative-dark), transparent 30%);
+    border: none;
+    padding: 0;
     cursor: grab;
     position: relative;
     width: var(--spacing-m);

@@ -40,6 +40,12 @@
     "playlist": "Playlist",
     "newPlaylist": "Neue Playlist",
     "hotspot": "Hotspot",
-    "unnamedTemplate": "Unbenannter @type-Inhalt"
+    "unnamedTemplate": "Unbenannter @type-Inhalt",
+    "actionButtonTemplate": "@title. Klicken, um hervorzuheben; Doppelklick oder Eingabetaste zum Bearbeiten",
+    "dragStartTemplate": "Aufgehoben: @title. Aktuelle Position: @position von @total.",
+    "dragOverTemplate": "@title ist jetzt auf Position @position von @total.",
+    "dragEndTemplate": "@title wurde auf Position @position von @total abgelegt.",
+    "dragCancelTemplate": "Das Ziehen wurde abgebrochen. @title ist an seiner ursprünglichen Position.",
+    "draggableInstructions": "Zum Umordnen, Elemente mit der Maus ziehen oder Leertaste/Enter drücken, um ein ziehbares Element aufzunehmen. Während des Ziehens die Pfeiltasten verwenden, um das Element zu verschieben. Drücke Leertaste oder Enter, um das Element an der neuen Position abzulegen, oder Escape, um abzubrechen."
   }
 }

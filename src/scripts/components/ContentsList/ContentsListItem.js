@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSortable } from '@dnd-kit/react/sortable';
 import { RestrictToVerticalAxis } from '@dnd-kit/abstract/modifiers';
+import { H5PContext } from '@context/H5PContext.js';
 import PropTypes from 'prop-types';
 import './ContentsListItem.scss';
 
@@ -12,6 +13,8 @@ export const ContentsListItem = ({
   onFocusChanged = () => {},
   tabOrderMode = 'none'
 }) => {
+  const context = useContext(H5PContext);
+
   /**
    * Handle double click on button.
    */
@@ -55,15 +58,25 @@ export const ContentsListItem = ({
     disabled: isDraggingDisabled,
   });
 
-  return <div
+  const actionButtonAriaLabel = context.t('actionButtonTemplate')
+    .replace('@title', `${item.title}. ${item.type}`);
+
+  return <li
     className='h5p-escape-room-editor-contents-list-item'
     id={ `h5p-escape-room-editor-contents-list-item-${id}` }
     ref={ isDraggingDisabled ? null : ref }
     onBlur={ handleBlur }
     onFocus={ handleFocus }
   >
-    {!isDraggingDisabled && <span className='h5p-escape-room-editor-contents-list-item-handle' ref={handleRef} />}
+    {!isDraggingDisabled && (
+      <button
+        className='h5p-escape-room-editor-contents-list-item-handle'
+        ref={ handleRef }
+        type='button'
+      />
+    )}
     <button
+      aria-label={ actionButtonAriaLabel }
       className='h5p-escape-room-editor-contents-list-item-button'
       onDoubleClick={ handleDoubleClick } // Intentionally double click to allow just highlighting interaction on click
       onKeyDown={ handleKeyDown }
@@ -71,7 +84,7 @@ export const ContentsListItem = ({
       <div className='h5p-escape-room-editor-contents-list-item-title'>{item.title}</div>
       <div className='h5p-escape-room-editor-contents-list-item-type'>{item.type}</div>
     </button>
-  </div>;
+  </li>;
 };
 
 ContentsListItem.propTypes = {

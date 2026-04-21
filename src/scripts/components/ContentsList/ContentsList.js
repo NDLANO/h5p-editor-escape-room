@@ -1,6 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useContext, useMemo, useRef } from 'react';
 import { DragDropProvider } from '@dnd-kit/react';
+import { Accessibility, defaultPreset } from '@dnd-kit/dom';
 import { move } from '@dnd-kit/helpers';
+import { H5PContext } from '@context/H5PContext.js';
 import { ContentsListItem } from './ContentsListItem.js';
 
 import './ContentsList.scss';
@@ -14,7 +16,57 @@ export const ContentsList = ({
   tabOrderMode = 'none',
   maxHeight = null,
 }) => {
+  const context = useContext(H5PContext);
   const uuids = useRef(new Map());
+  const dataRef = useRef(data);
+  dataRef.current = data;
+
+  /**
+   * Prepare localization of DnD-kit actions.
+   */
+  const plugins = useMemo(() => {
+    const titleById = (id) => dataRef.current.find((item) => item.interactionId === id)?.title ?? '';
+
+    return [
+      ...defaultPreset.plugins.filter((plugin) => plugin !== Accessibility),
+      Accessibility.configure({
+        announcements: {
+          dragstart: (event) => {
+            const id = event.operation.source.id;
+            const position = event.operation.source.index + 1;
+            return context.t('dragStartTemplate')
+              .replace('@title', titleById(id))
+              .replace('@position', String(position))
+              .replace('@total', String(dataRef.current.length));
+          },
+          dragover: (event) => {
+            const { source, target } = event.operation;
+            if (!target) {
+              return undefined;
+            }
+            return context.t('dragOverTemplate')
+              .replace('@title', titleById(source.id))
+              .replace('@position', String(target.index + 1))
+              .replace('@total', String(dataRef.current.length));
+          },
+          dragend: (event) => {
+            const { source, canceled } = event.operation;
+            const title = titleById(source.id);
+            if (canceled) {
+              return context.t('dragCancelTemplate').replace('@title', title);
+            }
+            return context.t('dragEndTemplate')
+              .replace('@title', title)
+              .replace('@position', String(source.index + 1))
+              .replace('@total', String(dataRef.current.length));
+          },
+        },
+        screenReaderInstructions: {
+          draggable: context.t('draggableInstructions'),
+        },
+      }),
+    ];
+  }, [context]);
 
   /**
    * Handle start of item dragging.
@@ -42,6 +94,7 @@ export const ContentsList = ({
 
   return (
     <DragDropProvider
+      plugins={ plugins }
       onDragStart={(event) => {
         handleDragStart(event);
       }}
@@ -49,7 +102,7 @@ export const ContentsList = ({
         handleDragEnd(event);
       }}
     >
-      <div
+      <ul
         className='h5p-escape-room-editor-contents-list'
         style={ maxHeight !== null ? { '--max-height': `${maxHeight}px` } : undefined }
       >
@@ -70,7 +123,7 @@ export const ContentsList = ({
             />
           );
         })}
-      </div>
+      </ul>
     </DragDropProvider>
   );
 };
