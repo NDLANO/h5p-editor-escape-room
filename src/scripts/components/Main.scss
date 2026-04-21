@@ -10,6 +10,9 @@
 }
 
 .h5p-escaperoom-editor {
+  container-name: h5p-escape-room;
+  container-type: inline-size;
+
   .scene-editor {
     position: relative;
     /*****
@@ -49,6 +52,22 @@
       .h5p-editor-radio-group-button {
         display: inline-block;
         padding: 0.2rem 0.5rem;
+      }
+    }
+  }
+
+  .h5p-escaperoom-editor-editing-area {
+    display: grid;
+    grid-template-columns: 1fr minmax(auto, 21ch); /* Enough to display common "AdvancedText (Hotspot)" completely */
+  }
+
+  @container h5p-escape-room (width < 40rem) {
+    .h5p-escaperoom-editor-editing-area {
+      grid-template-columns: auto;
+      grid-template-rows: 1fr auto;
+
+      .h5p-escape-room-editor-contents-list {
+        max-height: none;
       }
     }
   }

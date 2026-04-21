@@ -38,6 +38,8 @@
     "cloneSceneTextWithObjects": "A clonación desta escena tamén clonará todas as interaccións dentro da escena. Estás seguro de que queres clonar esta escena?",
     "noPlaylistsAdded": "Non se engadiron listas de reprodución",
     "playlist": "Lista de reprodución",
-    "newPlaylist": "Nova lista de reprodución"
+    "newPlaylist": "Nova lista de reprodución",
+    "hotspot": "Hotspot",
+    "unnamedTemplate": "Unnamed @type"
   }
 }

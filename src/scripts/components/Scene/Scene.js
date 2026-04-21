@@ -64,6 +64,7 @@ export default class Scene extends React.Component {
    */
   redrawScene() {
     this.preview.setCurrentSceneId(this.props.currentScene);
+    this.preview.setTabOrderMode(this.props.tabOrderMode);
     this.setAsActiveScene();
   }
 
@@ -147,4 +148,5 @@ Scene.propTypes = {
   sceneIsInitialized: PropTypes.func.isRequired,
   setScenePreview: PropTypes.func.isRequired,
   onCloseOverlay: PropTypes.func.isRequired,
+  tabOrderMode: PropTypes.string,
 };

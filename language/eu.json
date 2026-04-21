@@ -38,6 +38,8 @@
     "cloneSceneTextWithObjects": "Eszena hau klonatzeak eszenaren barruko elkarrekintza guztiak klonatuko ditu. Ziur eszena hau klonatu nahi duzula?",
     "noPlaylistsAdded": "Ez da erreprodukzio zerrendarik gehitu",
     "playlist": "Playlist",
-    "newPlaylist": "Erreprodukzio zerrenda berria"
+    "newPlaylist": "Erreprodukzio zerrenda berria",
+    "hotspot": "Hotspot",
+    "unnamedTemplate": "Unnamed @type"
   }
 }

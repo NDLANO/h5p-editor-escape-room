@@ -38,6 +38,8 @@
     "cloneSceneTextWithObjects": "Wenn du diese Szene kopierst, werden auch alle Interaktionen innerhalb der Szene kopiert. Bist du sicher, dass du diese Szene kopieren möchtest?",
     "noPlaylistsAdded": "Keine Playlists hinzugefügt",
     "playlist": "Playlist",
-    "newPlaylist": "Neue Playlist"
+    "newPlaylist": "Neue Playlist",
+    "hotspot": "Hotspot",
+    "unnamedTemplate": "Unbenannter @type-Inhalt"
   }
 }

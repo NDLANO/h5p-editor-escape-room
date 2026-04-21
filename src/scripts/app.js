@@ -4,6 +4,24 @@ import Main from '@components/Main.js';
 import { H5PContext } from '@context/H5PContext.js';
 import '@scripts/playlist-widget/widget.js';
 
+/**
+ * Add listener to set `using-mouse` class on dom element when using mouse.
+ * Not meant to be used more than once on same element.
+ * @param {HTMLElement} domElement
+ */
+const addMouseUseListener = (domElement) => {
+  if (!(domElement instanceof HTMLElement)) {
+    return;
+  }
+
+  domElement.classList.add('using-mouse');
+  ['mousedown', 'keydown', 'keyup'].forEach((eventName) => {
+    domElement.addEventListener(eventName, (event) => {
+      domElement.classList.toggle('using-mouse', event.type === 'mousedown');
+    });
+  });
+};
+
 export default class EscapeRoom {
   /**
    * @class
@@ -46,6 +64,7 @@ export default class EscapeRoom {
   appendTo($container) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('h5p-editor-escape-room-wrapper');
+    addMouseUseListener(wrapper);
     this.wrapper = wrapper;
 
     $container[0].appendChild(wrapper);
@@ -64,8 +83,8 @@ export default class EscapeRoom {
           initialScene={startScene}
           setScenePreview={(scenePreview) => {
             this.scenePreview = scenePreview;
-          }
-          }
+          }}
+          tabOrderMode={this.parent?.params.behaviour.tabOrderMode} // May be changed in the editor
         />
       </H5PContext.Provider>
     );
@@ -79,13 +98,18 @@ export default class EscapeRoom {
       return;
     }
 
-    const mobileThreshold = 815;
+    const mobileThreshold = 815; // TODO: This should be replaced by container queries
     const wrapperSize = this.wrapper.getBoundingClientRect();
     if (wrapperSize.width < mobileThreshold) {
       this.wrapper.classList.add('mobile');
     }
     else {
       this.wrapper.classList.remove('mobile');
+    }
+
+    const sceneWrapper = this.wrapper.querySelector('.h5p-three-sixty-wrapper');
+    if (sceneWrapper) {
+      this.onContentsListResize?.(sceneWrapper.getBoundingClientRect().height);
     }
   }
 

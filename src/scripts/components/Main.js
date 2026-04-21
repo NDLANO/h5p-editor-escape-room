@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Scene, { SceneTypes } from '@components/Scene/Scene.js';
+import { ContentsList } from '@components/ContentsList/ContentsList.js';
 import ControlBar from './ControlBar/ControlBar.js';
 import SceneEditor, { SceneEditingType } from '@components/EditingDialog/SceneEditor.js';
 import InteractionsBar from '@components/InteractionsBar/InteractionsBar.js';
@@ -11,6 +12,28 @@ import { getInteractionFromElement, isGoToScene, updatePosition } from '@h5phelp
 import { showConfirmationDialog } from '@h5phelpers/h5pComponents.js';
 import { addBehavioralListeners } from '@h5phelpers/editorForms.js';
 import '@components/Main.scss';
+
+/**
+ * Get contentsListData from interaction
+ * @param {object} interaction Interaction.
+ * @returns {object[]} Data for contents list.
+ */
+const getInteractionData = (interaction = {}, t = (text) => text) => {
+  if (!interaction.id || !interaction.action) {
+    return;
+  }
+
+  const plainName = interaction.action?.library.split(' ')[0]?.split('.')?.[1] || '';
+  const hotspotExtensionText = interaction.showAsHotspot ? ` (${t('hotspot')})` : '';
+
+  const untitled = t('unnamedTemplate').replace('@type',  plainName);
+
+  return {
+    interactionId: interaction.id,
+    title: interaction.labelText || (interaction.action.metadata?.title ?? untitled),
+    type: `${plainName}${hotspotExtensionText}`,
+  };
+};
 
 export default class Main extends React.Component {
   /**
@@ -31,18 +54,87 @@ export default class Main extends React.Component {
       startScene: this.props.initialScene,
       isSceneUpdated: false,
       isSceneSelectorExpanded: false,
-      currentCameraPosition: null
+      currentCameraPosition: null,
+      contentsListData: [],
+      contentsListMaxHeight: null,
+      tabOrderMode: props.tabOrderMode,
     };
+  }
+
+  /**
+   * Get ontents list data from current scene settings.
+   * @returns {object[]} Contents list data.
+   */
+  getContentsListData() {
+    const sceneInteractions = this.context.params.scenes[this.state.currentScene]?.interactions ?? [];
+    return sceneInteractions
+      .map((interaction) => getInteractionData(interaction, this.context.t))
+      .filter((data) => Boolean(data));
   }
 
   /**
    * Handle component did mount (React).
    */
   componentDidMount() {
+    this.context.onContentsListResize = (height) => {
+      this.setState({ contentsListMaxHeight: height });
+    };
+
     addBehavioralListeners(this.context.parent, () => {
-      this.setState({ isSceneUpdated: false });
+      const tabOrderMode = this.context.parent?.params?.behaviour?.tabOrderMode;
+
+      this.setState({
+        isSceneUpdated: false,
+        tabOrderMode,
+      });
+
+      // Preview needs to update first
+      window.requestAnimationFrame(() => {
+        this.setState({ contentsListData: this.getContentsListData() });
+      });
     });
   }
+
+  /**
+   * Handle action callback from contentsList. Opens interaction for editing.
+   * @param {string} interactionId Interaction id.
+   */
+  handleActionFromContentsList = (interactionId) => {
+    const interactions = this.context.params.scenes[this.state.currentScene].interactions;
+    const interactionIndex = interactions.findIndex((interaction) => interaction.id === interactionId);
+
+    this.setState({
+      editingInteraction: interactionIndex,
+    });
+  };
+
+  /**
+   * Handle order of items in contents list changed.
+   * @param {object[]}} reordered Reordered list.
+   */
+  handleContentsListOrderChanged = (reordered) => {
+    const interactions = this.context.params.scenes[this.state.currentScene].interactions;
+    this.context.params.scenes[this.state.currentScene].interactions =
+      reordered.map(({ interactionId }) => interactions.find((i) => i.id === interactionId));
+
+    window.requestAnimationFrame(() => {
+      this.setState({ contentsListData: this.getContentsListData() });
+    });
+  };
+
+  /**
+   * Handle focus change on contents list and focus related dom element.
+   * @param {string} interactionId
+   * @param {boolean} hasFocus
+   */
+  handleFocusChangedFromContentsList = (interactionId, hasFocus) => {
+    if (typeof interactionId !== 'string' || typeof hasFocus !== 'boolean') {
+      return;
+    }
+
+    const relatedDOMElement = this.scenePreview.wrapper.querySelector(`[data-interaction-id='${interactionId}']`);
+    relatedDOMElement?.classList.toggle('highlight', hasFocus);
+  };
 
   /**
    * Edit scene.
@@ -137,7 +229,10 @@ export default class Main extends React.Component {
 
     this.updateCurrentScene(scene.sceneId);
     this.updateStartScene(scene.sceneId);
-    this.setState({ isSceneUpdated: false });
+    this.setState({
+      isSceneUpdated: false,
+      contentsListData: this.getContentsListData(),
+    });
   }
 
   /**
@@ -180,7 +275,10 @@ export default class Main extends React.Component {
 
     this.updateCurrentScene(scene.sceneId);
     this.updateStartScene(scene.sceneId);
-    this.setState({ isSceneUpdated: false });
+    this.setState({
+      isSceneUpdated: false,
+      contentsListData: this.getContentsListData(),
+    });
   }
 
   /**
@@ -213,6 +311,7 @@ export default class Main extends React.Component {
         isSceneUpdated: false,
         currentScene: isChangingScene ? params.sceneId : prevState.currentScene,
         editingScene: SceneEditingType.NOT_EDITING,
+        contentsListData: this.getContentsListData(),
       };
     });
   }
@@ -253,6 +352,7 @@ export default class Main extends React.Component {
     this.setState({
       editingInteraction: SceneEditingType.NOT_EDITING,
       isSceneUpdated: false,
+      contentsListData: this.getContentsListData(),
     });
   }
 
@@ -294,6 +394,7 @@ export default class Main extends React.Component {
     this.setState({
       editingInteraction: InteractionEditingType.NOT_EDITING,
       isSceneUpdated: false,
+      contentsListData: this.getContentsListData(),
     });
     this.scenePreview.trigger('updateEditStateInteraction');
   }
@@ -307,6 +408,7 @@ export default class Main extends React.Component {
       isSceneUpdated: false,
       currentScene: sceneId,
       isSceneSelectorExpanded: false,
+      contentsListData: this.getContentsListData(),
     });
   }
 
@@ -325,7 +427,13 @@ export default class Main extends React.Component {
    * Set a scene as initialized.
    */
   sceneIsInitialized() {
-    this.setState({ isSceneUpdated: true });
+    const sceneWrapper = this.context.wrapper?.querySelector('.h5p-three-sixty-wrapper');
+
+    this.setState({
+      isSceneUpdated: true,
+      contentsListData: this.getContentsListData(),
+      contentsListMaxHeight: sceneWrapper?.getBoundingClientRect().height ?? null,
+    });
   }
 
   /**
@@ -336,6 +444,7 @@ export default class Main extends React.Component {
     this.setState({
       editingInteraction: InteractionEditingType.NEW_INTERACTION,
       editingLibrary: library,
+      contentsListData: this.getContentsListData(),
     });
   }
 
@@ -424,6 +533,13 @@ export default class Main extends React.Component {
         );
 
         updatePosition(interaction, event.data);
+
+        // Preview needs to have updated first
+        window.requestAnimationFrame(() => {
+          this.setState({
+            contentsListData: this.getContentsListData(),
+          });
+        });
       }
       else {
       // The event was triggered by camera movement
@@ -434,7 +550,18 @@ export default class Main extends React.Component {
     });
 
     this.scenePreview.on('changedScene', (event) => {
-      this.setState({ currentScene: event.data });
+      this.setState({
+        currentScene: event.data,
+        contentsListData: this.getContentsListData(),
+      });
+    });
+
+    this.scenePreview.on('sceneUpdated', (sceneId) => {
+      window.requestAnimationFrame(() => {
+        this.setState({
+          contentsListData: this.getContentsListData(),
+        });
+      });
     });
   }
 
@@ -479,16 +606,27 @@ export default class Main extends React.Component {
             isShowing={this.state.isSceneUpdated && hasScenes}
             createInteraction={this.createInteraction.bind(this)}
           />
-          <Scene
-            isSceneUpdated={this.state.isSceneUpdated}
-            sceneIsInitialized={this.sceneIsInitialized.bind(this)}
-            setScenePreview={this.setScenePreview.bind(this)}
-            currentScene={this.state.currentScene}
-            hasOverlay={this.state.isSceneSelectorExpanded}
-            onCloseOverlay={ () => {
-              this.toggleExpandSceneSelector(false);
-            } }
-          />
+          <div className='h5p-escaperoom-editor-editing-area'>
+            <Scene
+              isSceneUpdated={this.state.isSceneUpdated}
+              sceneIsInitialized={this.sceneIsInitialized.bind(this)}
+              setScenePreview={this.setScenePreview.bind(this)}
+              currentScene={this.state.currentScene}
+              hasOverlay={this.state.isSceneSelectorExpanded}
+              onCloseOverlay={ () => {
+                this.toggleExpandSceneSelector(false);
+              } }
+              tabOrderMode={ this.state.tabOrderMode }
+            />
+            <ContentsList
+              data={ this.state.contentsListData }
+              onAction={ this.handleActionFromContentsList.bind(this) }
+              onFocusChanged={ this.handleFocusChangedFromContentsList.bind(this) }
+              onOrderChanged={ this.handleContentsListOrderChanged.bind(this) }
+              tabOrderMode={ this.state.tabOrderMode }
+              maxHeight={ this.state.contentsListMaxHeight }
+            />
+          </div>
         </div>
         <ControlBar
           currentScene={this.state.currentScene}
@@ -535,5 +673,6 @@ Main.contextType = H5PContext;
 
 Main.propTypes = {
   initialScene: PropTypes.number,
-  setScenePreview: PropTypes.func.isRequired
+  setScenePreview: PropTypes.func.isRequired,
+  tabOrderMode: PropTypes.string
 };

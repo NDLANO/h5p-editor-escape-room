@@ -38,6 +38,8 @@
     "cloneSceneTextWithObjects": "Viss du lagar ein kopi av denne scenen, vil alle interaksjonane i scenen også bli tekne med i kopien. Er du sikker på at du vil lage ein kopi?",
     "noPlaylistsAdded": "Ingen spelelister er lagde til",
     "playlist": "Speleliste",
-    "newPlaylist": "Ny speleliste"
+    "newPlaylist": "Ny speleliste",
+    "hotspot": "Hotspot",
+    "unnamedTemplate": "Unnamed @type"
   }
 }

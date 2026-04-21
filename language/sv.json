@@ -38,6 +38,8 @@
     "cloneSceneTextWithObjects": "Kloning av denna scen innebär att alla interaktioner inom scenen också klonas. Är du säker på att du vill klona denna scen?",
     "noPlaylistsAdded": "Inga spellistor tillagda",
     "playlist": "Spellista",
-    "newPlaylist": "Ny spellista"
+    "newPlaylist": "Ny spellista",
+    "hotspot": "Hotspot",
+    "unnamedTemplate": "Unnamed @type"
   }
 }

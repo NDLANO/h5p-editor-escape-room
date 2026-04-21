@@ -38,6 +38,8 @@
     "cloneSceneTextWithObjects": "Klonováním této scény také naklonuje všechny interakce ve scéně. Jste si jisti, že chcete naklonovat tuto scénu?",
     "noPlaylistsAdded": "Nebyly přidány žádné seznamy",
     "playlist": "Seznam skladeb",
-    "newPlaylist": "Nový seznam skladeb"
+    "newPlaylist": "Nový seznam skladeb",
+    "hotspot": "Hotspot",
+    "unnamedTemplate": "Unnamed @type"
   }
 }

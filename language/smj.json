@@ -38,6 +38,8 @@
     "cloneSceneTextWithObjects": "Cloning this scene will also clone all interactions within the scene and any navigational hotspots pointing to this scene. Are you sure you wish to clone this scene?",
     "noPlaylistsAdded": "No playlists added",
     "playlist": "Playlist",
-    "newPlaylist": "New playlist"
+    "newPlaylist": "New playlist",
+    "hotspot": "Hotspot",
+    "unnamedTemplate": "Unnamed @type"
   }
 }
