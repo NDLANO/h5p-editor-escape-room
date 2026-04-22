@@ -1,0 +1,14 @@
+.h5p-escape-room-editor-contents-list {
+  --padding: calc(0.5 * var(--spacing-xxs));
+
+  background-color: var(--color-theme-ui-base);
+  display: inline-flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  max-height: calc(var(--max-height) - 2 * var(--padding)); /* --max-height be set programatically */
+  overflow-y: auto;
+  row-gap: calc(0.5 * var(--spacing-xxs));
+  scrollbar-gutter: stable;
+  padding: var(--padding)
+}

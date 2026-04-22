@@ -5,7 +5,7 @@ export default [
   eslintConfigNdlaH5P.configs['flat/recommended'],
   pluginReact.configs.flat.recommended,
   {
-   settings: {
+    settings: {
       react: {
         version: 'detect',
       },

@@ -38,6 +38,14 @@
     "cloneSceneTextWithObjects": "Klonováním této scény také naklonuje všechny interakce ve scéně. Jste si jisti, že chcete naklonovat tuto scénu?",
     "noPlaylistsAdded": "Nebyly přidány žádné seznamy",
     "playlist": "Seznam skladeb",
-    "newPlaylist": "Nový seznam skladeb"
+    "newPlaylist": "Nový seznam skladeb",
+    "hotspot": "Hotspot",
+    "unnamedTemplate": "Unnamed @type",
+    "actionButtonTemplate": "@title. Click to highlight, double-click or enter key to edit",
+    "dragStartTemplate": "Picked up @title. Current position: @position of @total.",
+    "dragOverTemplate": "@title is now in position @position of @total.",
+    "dragEndTemplate": "@title was dropped at position @position of @total.",
+    "dragCancelTemplate": "Dragging was cancelled. @title returned to its original position.",
+    "draggableInstructions": "To reorder items, drag with mouse or press Space or Enter to pick up a draggable item. While dragging, use the arrow keys to move the item. Press Space or Enter to drop the item in its new position, or press Escape to cancel."
   }
 }

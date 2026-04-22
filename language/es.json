@@ -38,6 +38,14 @@
     "cloneSceneTextWithObjects": "Clonar esta escena también clonará todas las interacciones dentro de la escena. ¿Está seguro de que desea clonar esta escena?",
     "noPlaylistsAdded": "Sin listas de reproducción añadidas",
     "playlist": "Lista de reproducción",
-    "newPlaylist": "Nueva lista de reproducción"
+    "newPlaylist": "Nueva lista de reproducción",
+    "hotspot": "Hotspot",
+    "unnamedTemplate": "Unnamed @type",
+    "actionButtonTemplate": "@title. Click to highlight, double-click or enter key to edit",
+    "dragStartTemplate": "Picked up @title. Current position: @position of @total.",
+    "dragOverTemplate": "@title is now in position @position of @total.",
+    "dragEndTemplate": "@title was dropped at position @position of @total.",
+    "dragCancelTemplate": "Dragging was cancelled. @title returned to its original position.",
+    "draggableInstructions": "To reorder items, drag with mouse or press Space or Enter to pick up a draggable item. While dragging, use the arrow keys to move the item. Press Space or Enter to drop the item in its new position, or press Escape to cancel."
   }
 }

@@ -20,12 +20,75 @@
   }
 }
 
-.h5p-editor-escape-room-wrapper.mobile {
-  .h5p-control-bar {
-    display: block;
-  }
+.h5p-editor-escape-room-wrapper {
+  /*
+   * Variables derived from H5P Theme can be removed once theming support is considered obligatory.
+   * Copying wide "Daylight" theme.
+   */
+  --color-theme-ui-base: var(--h5p-theme-ui-base, #FFFFFF);
+  --color-text-primary: var(--h5p-theme-text-primary, #101729);
+  --color-text-secondary: var(--h5p-theme-text-secondary, #354054);
+  --color-text-third: var(--h5p-theme-text-third, #737373);
+  --color-stroke-1: var(--h5p-theme-stroke-1, #C7D7EF);
+  --color-stroke-2: var(--h5p-theme-stroke-2, #E7EDF6);
+  --color-stroke-3: var(--h5p-theme-stroke-3, #F6F7FA);
+  --color-feedback-correct-main: var(--h5p-theme-feedback-correct-main, #256D1D);
+  --color-feedback-correct-secondary: var(--h5p-theme-feedback-correct-secondary, #f3fcf0);
+  --color-feedback-correct-third: var(--h5p-theme-feedback-correct-third, #cff1c2);
+  --color-feedback-incorrect-main: var(--h5p-theme-feedback-incorrect-main, #a13236);
+  --color-feedback-incorrect-secondary: var(--h5p-theme-feedback-incorrect-secondary, #faf0f4);
+  --color-feedback-incorrect-third: var(--h5p-theme-feedback-incorrect-third, #f6dce7);
+  --color-feedback-neutral-main: var(--h5p-theme-feedback-neutral-main, #E6C81D);
+  --color-feedback-neutral-secondary: var(--h5p-theme-feedback-neutral-secondary, #5E4817);
+  --color-feedback-neutral-third: var(--h5p-theme-feedback-neutral-third, #F0EBCB);
+  --color-main-cta-base: var(--h5p-theme-main-cta-base, #006FBF);
+  --color-secondary-cta-base: var(--h5p-theme-secondary-cta-base, #202122);
+  --color-alternative-base: var(--h5p-theme-alternative-base, #F1F5FB);
+  --color-background: var(--h5p-theme-background, #F9FBFF);
+  --color-focus: var(--h5p-theme-focus, #006FBF);
+  --color-main-cta-light: var(--h5p-theme-main-cta-light, #007CD6);
+  --color-main-cta-dark: var(--h5p-theme-main-cta-dark, #005FA3);
+  --color-contrast-cta: var(--h5p-theme-contrast-cta, #EBF7FF);
+  --color-contrast-cta-white: var(--h5p-theme-contrast-cta-white, #006FBF);
+  --color-contrast-cta-light: var(--color-contrast-cta-light, color-mix(in srgb, var(--color-main-cta-base), transparent 90%));
+  --color-contrast-cta-dark: var(--h5p-theme-contrast-cta-dark, #0597FF);
+  --color-secondary-cta-light: var(--h5p-theme-secondary-cta-light, #222324);
+  --color-secondary-cta-dark: var(--h5p-theme-secondary-cta-dark, #1F1F20);
+  --color-secondary-contrast-cta: var(--h5p-theme-secondary-contrast-cta, #E3E9F1);
+  --color-secondary-contrast-cta-hover: var(--h5p-theme-secondary-contrast-cta-hover, #FFFFFF);
+  --color-alternative-light: var(--h5p-theme-alternative-light, #F7F9FD);
+  --color-alternative-dark: var(--h5p-theme-alternative-dark, #DBE5F5);
+  --color-alternative-darker: var(--h5p-theme-alternative-darker, #C7D7EF);
 
-  .buttons-wrapper {
-    margin-top: 0.75em;
+  --spacing-xl: var(--h5p-theme-spacing-xl-primary-large, 3rem);
+  --spacing-l: var(--h5p-theme-spacing-primary-large, 2rem);
+  --spacing-m: var(--h5p-theme-spacing-secondary-large, 1.5rem);
+  --spacing-s: var(--h5p-theme-spacing-third-large, 1rem);
+  --spacing-xs: var(--h5p-theme-spacing-fourth-large, 0.65rem);
+  --spacing-xxs: var(--h5p-theme-spacing-fifth-large, 0.5rem);
+
+  --font-size-xxl: var(--h5p-theme-font-size-xxl-large, 1.5rem);
+  --font-size-xl: var(--h5p-theme-font-size-xl-large, 1.25rem);
+  --font-size-l: var(--h5p-theme-font-size-l-large, 1.125rem);
+  --font-size-m: var(--h5p-theme-font-size-m-large, 1rem);
+  --font-size-s: var(--h5p-theme-font-size-s-large, 0.85rem);
+
+  --border-radius-large: var(--h5p-theme-border-radius-large, 0.5rem);
+  --border-radius-medium: var(--h5p-theme-border-radius-medium, 0.375rem);
+  --border-radius-small: var(--h5p-theme-border-radius-small, 0.25rem);
+
+  /* Icons */
+  --icon-fontawesome-ellipsis-vertical: "\f142";
+  --icon-unicode-hair-space: "\200a";
+
+  .mobile {
+    .h5p-control-bar {
+      display: block;
+    }
+
+    .buttons-wrapper {
+      margin-top: 0.75em;
+    }
   }
 }
+

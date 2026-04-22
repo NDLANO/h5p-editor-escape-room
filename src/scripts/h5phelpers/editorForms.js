@@ -95,16 +95,19 @@ const addBehavioralChangeListeners = (parent, callback) => {
   const sceneRendering = behaviour.children.find((child) => {
     return child.field.name === 'sceneRenderingQuality';
   });
+  sceneRendering.changes.push(callback);
 
   const label = behaviour.children.find((child) => {
     return child.field.name === 'label';
   });
-
   for (let i = 0 ; i < label.children.length ; i++) {
     label.children[i].changes.push(callback);
   }
 
-  sceneRendering.changes.push(callback);
+  const tabOrder = behaviour.children.find((child) => {
+    return child.field.name === 'tabOrderMode';
+  });
+  tabOrder.changes.push(callback);
 };
 
 /**
