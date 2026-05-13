@@ -66,7 +66,9 @@ export default class Main extends React.Component {
    * @returns {object[]} Contents list data.
    */
   getContentsListData() {
-    const sceneInteractions = this.context.params.scenes[this.state.currentScene]?.interactions ?? [];
+    const sceneInteractions = this.context.params.scenes
+      .find((scene) => scene.sceneId === this.state.currentScene)?.interactions ?? [];
+
     return sceneInteractions
       .map((interaction) => getInteractionData(interaction, this.context.t))
       .filter((data) => Boolean(data));
