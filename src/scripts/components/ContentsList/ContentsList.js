@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef } from 'react';
+import React, { useContext, useMemo, useRef, useState } from 'react';
 import { DragDropProvider } from '@dnd-kit/react';
 import { Accessibility, defaultPreset } from '@dnd-kit/dom';
 import { move } from '@dnd-kit/helpers';
@@ -20,6 +20,7 @@ export const ContentsList = ({
   const uuids = useRef(new Map());
   const dataRef = useRef(data);
   dataRef.current = data;
+  const [itemsVisible, setItemsVisible] = useState(false);
 
   /**
    * Prepare localization of DnD-kit actions.
@@ -92,6 +93,8 @@ export const ContentsList = ({
     });
   };
 
+  const contentsListUUID = H5P.createUUID();
+
   return (
     <DragDropProvider
       plugins={ plugins }
@@ -102,28 +105,61 @@ export const ContentsList = ({
         handleDragEnd(event);
       }}
     >
-      <ul
-        className='h5p-escape-room-editor-contents-list'
-        style={ maxHeight !== null ? { '--max-height': `${maxHeight}px` } : undefined }
+      <div
+        className="h5p-escape-room-editor-contents-list-container"
+        style={ {
+          '--grid-template-columns': itemsVisible ? '1fr 1rem' : '1rem',
+          '--grid-template-rows': itemsVisible ? '1rem 1fr' : '1rem',
+        } }
       >
-        {data.map((item, index) => {
-          if (!uuids.current.has(item.interactionId)) {
-            uuids.current.set(item.interactionId, H5P.createUUID());
-          }
+        <div
+          className={ `h5p-escape-room-editor-contents-list-items-wrapper${itemsVisible ? '' : ' display-none'}`}
+          id={ contentsListUUID }
+        >
+          {data.length > 0 ? (
+            <ul
+              className='h5p-escape-room-editor-contents-list'
+              style={ maxHeight !== null ? { '--max-height': `${maxHeight}px` } : undefined }
+            >
+              {data.map((item, index) => {
+                if (!uuids.current.has(item.interactionId)) {
+                  uuids.current.set(item.interactionId, H5P.createUUID());
+                }
 
-          return (
-            <ContentsListItem
-              index={ index }
-              item={ item }
-              id={ uuids.current.get(item.interactionId) }
-              onAction={ onAction }
-              onFocusChanged={ onFocusChanged }
-              tabOrderMode={ tabOrderMode }
-              key={ item.interactionId }
-            />
-          );
-        })}
-      </ul>
+                return (
+                  <ContentsListItem
+                    index={ index }
+                    item={ item }
+                    id={ uuids.current.get(item.interactionId) }
+                    onAction={ onAction }
+                    onFocusChanged={ onFocusChanged }
+                    tabOrderMode={ tabOrderMode }
+                    key={ item.interactionId }
+                  />
+                );
+              })}
+            </ul>
+          ) : (
+            <p className='h5p-escape-room-editor-contents-list-empty'>
+              { context.t('noContentsAdded') }
+            </p>
+          )}
+        </div>
+        <button
+          className={ `h5p-escape-room-editor-contents-list-visibilty-toggle ${itemsVisible ? 'open' : 'closed'}` }
+          aria-controls={ contentsListUUID }
+          aria-expanded={ itemsVisible }
+          aria-label={ context.t(itemsVisible ? 'closeContentsList' : 'openContentsList') }
+          onClick={ () => {
+            setItemsVisible((visible) => !visible);
+            window.requestAnimationFrame(() => {
+              window.dispatchEvent(new Event('resize'));
+            });
+          } }
+        >
+
+        </button>
+      </div>
     </DragDropProvider>
   );
 };
