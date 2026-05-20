@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Scene, { SceneTypes } from '@components/Scene/Scene.js';
 import { ContentsList } from '@components/ContentsList/ContentsList.js';
@@ -382,7 +382,7 @@ export default class Main extends React.Component {
     const isEditing = this.state.editingInteraction
       !== InteractionEditingType.NEW_INTERACTION;
 
-    let interactionIndex = null;
+    let interactionIndex;
     if (isEditing) {
       scene.interactions[this.state.editingInteraction] = params;
       interactionIndex = this.state.editingInteraction;
@@ -558,7 +558,7 @@ export default class Main extends React.Component {
       });
     });
 
-    this.scenePreview.on('sceneUpdated', (sceneId) => {
+    this.scenePreview.on('sceneUpdated', () => {
       window.requestAnimationFrame(() => {
         this.setState({
           contentsListData: this.getContentsListData(),

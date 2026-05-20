@@ -323,7 +323,7 @@ class PlaylistWidgetComponent extends React.Component {
    * @returns {Playlist[]} playlists Filtered playlists.
    */
   removePlaylist(playlists = [], selectedPlaylist) {
-    return playlists = playlists.filter(
+    return playlists.filter(
       (playlist) => playlist !== selectedPlaylist
     );
   }

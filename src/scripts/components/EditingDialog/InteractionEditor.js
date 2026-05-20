@@ -278,6 +278,7 @@ InteractionEditor.propTypes = {
   }),
   scenePreview: PropTypes.shape({
     getCamera: PropTypes.func.isRequired,
+    getRect: PropTypes.func.isRequired
   }),
   editingInteraction: PropTypes.oneOfType([
     PropTypes.number,
@@ -285,5 +286,4 @@ InteractionEditor.propTypes = {
   ]),
   doneAction: PropTypes.func.isRequired,
   removeAction: PropTypes.func.isRequired,
-  scenePreview: PropTypes.object.isRequired,
 };
