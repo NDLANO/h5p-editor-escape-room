@@ -84,7 +84,7 @@ export default class EscapeRoom {
           setScenePreview={(scenePreview) => {
             this.scenePreview = scenePreview;
           }}
-          tabOrderMode={this.parent?.params.behaviour.tabOrderMode} // May be changed in the editor
+          tabOrderMode={this.parent?.params?.behaviour?.tabOrderMode} // May be changed in the editor
         />
       </H5PContext.Provider>
     );
