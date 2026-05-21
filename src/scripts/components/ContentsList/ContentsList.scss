@@ -1,14 +1,71 @@
-.h5p-escape-room-editor-contents-list {
+.h5p-escape-room-editor-contents-list-container {
   --padding: calc(0.5 * var(--spacing-xxs));
 
   background-color: var(--color-theme-ui-base);
-  display: inline-flex;
-  flex-direction: column;
-  list-style: none;
-  margin: 0;
-  max-height: calc(var(--max-height) - 2 * var(--padding)); /* --max-height be set programatically */
-  overflow-y: auto;
-  row-gap: calc(0.5 * var(--spacing-xxs));
-  scrollbar-gutter: stable;
-  padding: var(--padding)
+  color: var(--color-text-primary);
+  display: grid;
+  gap: calc(0.25 * var(--spacing-s));
+  grid-template-columns: var(--grid-template-columns);
+  padding: var(--padding);
+
+  .h5p-escape-room-editor-contents-list-items-wrapper {
+    width: 21ch; /* Enough to display common "AdvancedText (Hotspot)" completely */;
+
+    &.display-none {
+      display: none;
+    }
+
+    .h5p-escape-room-editor-contents-list {
+      display: inline-flex;
+      flex-direction: column;
+      list-style: none;
+      margin: 0;
+      max-height: calc(var(--max-height) - 2 * var(--padding)); /* --max-height be set programatically */
+      overflow-y: auto;
+      padding: 0;
+      row-gap: calc(0.25 * var(--spacing-s));
+      scrollbar-gutter: stable;
+      width: 100%;
+    }
+
+    .h5p-escape-room-editor-contents-list-empty {
+      font-size: var(--font-size-s);
+      margin: 0;
+      padding: var(--spacing-s);
+      text-align: center;
+    }
+  }
+
+  .h5p-escape-room-editor-contents-list-visibilty-toggle {
+    background-color: var(--color-alternative-light);
+    border: 1px solid var(--color-alternative-darker);
+    padding: 0;
+    position: relative;
+
+    &:hover {
+      background-color: var(--color-alternative-dark);
+    }
+
+    &:focus-visible {
+      outline: 2px ridge var(--color-main-cta-base);
+    }
+
+    &.closed::before {
+      content: var(--icon-fontawesome-caret-left);
+    }
+
+    &.open::before {
+      content: var(--icon-fontawesome-caret-right);
+    }
+
+    &::before {
+      color: var(--color-text-primary);
+      content: "x";
+      font-family: "H5PFontAwesome4", sans-serif; /* Loaded by EscapeRoom */
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 }

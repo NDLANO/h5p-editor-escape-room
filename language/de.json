@@ -46,6 +46,9 @@
     "dragOverTemplate": "@title ist jetzt auf Position @position von @total.",
     "dragEndTemplate": "@title wurde auf Position @position von @total abgelegt.",
     "dragCancelTemplate": "Das Ziehen wurde abgebrochen. @title ist an seiner ursprünglichen Position.",
-    "draggableInstructions": "Zum Umordnen, Elemente mit der Maus ziehen oder Leertaste/Enter drücken, um ein ziehbares Element aufzunehmen. Während des Ziehens die Pfeiltasten verwenden, um das Element zu verschieben. Drücke Leertaste oder Enter, um das Element an der neuen Position abzulegen, oder Escape, um abzubrechen."
+    "draggableInstructions": "Zum Umordnen, Elemente mit der Maus ziehen oder Leertaste/Enter drücken, um ein ziehbares Element aufzunehmen. Während des Ziehens die Pfeiltasten verwenden, um das Element zu verschieben. Drücke Leertaste oder Enter, um das Element an der neuen Position abzulegen, oder Escape, um abzubrechen.",
+    "noContentsAdded": "Die Szene enthält keine Inhalte",
+    "openContentsList": "Öffne Liste der Inhalte",
+    "closeContentsList": "Schließe Liste der Inhalte"
   }
 }
