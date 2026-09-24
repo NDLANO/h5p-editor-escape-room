@@ -13,8 +13,8 @@
     "@babel/eslint-parser": "^8.0.1",
     "@babel/preset-env": "^8.0.2",
     "@babel/preset-react": "^8.0.1",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "babel-loader": "^10.1.1",
     "css-loader": "^7.1.5",
     "eslint-config-ndla-h5p": "github:ndlano/eslint-config-ndla-h5p",
@@ -32,8 +32,8 @@
     "@dnd-kit/helpers": "^0.5.0",
     "@dnd-kit/react": "^0.5.0",
     "prop-types": "^15.8.1",
-    "react": "^19.2",
-    "react-dom": "^19.2"
+    "react": "^19.3",
+    "react-dom": "^19.3"
   },
   "keywords": [],
   "author": "Joubel AS <contact@joubel.com> (https://joubel.com), NDLA (https://ndla.no)",
