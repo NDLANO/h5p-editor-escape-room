@@ -20,17 +20,17 @@
     "eslint-config-ndla-h5p": "github:ndlano/eslint-config-ndla-h5p",
     "eslint-plugin-react": "^7.37.5",
     "mini-css-extract-plugin": "^2.10.2",
-    "sass": "^1.105.1",
+    "sass": "^1.105.2",
     "sass-loader": "^17.0.1",
-    "webpack": "^5.111.1",
+    "webpack": "^5.112.0",
     "webpack-cli": "^7.2.3"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^8.0.6",
-    "@dnd-kit/abstract": "^0.5.0",
-    "@dnd-kit/dom": "^0.5.0",
-    "@dnd-kit/helpers": "^0.5.0",
-    "@dnd-kit/react": "^0.5.0",
+    "@dnd-kit/abstract": "^0.5.1",
+    "@dnd-kit/dom": "^0.5.1",
+    "@dnd-kit/helpers": "^0.5.1",
+    "@dnd-kit/react": "^0.5.1",
     "prop-types": "^15.8.1",
     "react": "^19.3",
     "react-dom": "^19.3"
