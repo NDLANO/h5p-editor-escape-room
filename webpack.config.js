@@ -43,7 +43,11 @@ export default {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          // Babel would default to development and use React's jsxDEV, which is missing in production builds
+          envName: mode
+        }
       },
       {
         test: /\.(s[ac]ss|css)$/,
