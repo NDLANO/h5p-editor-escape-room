@@ -108,6 +108,13 @@ const addBehavioralChangeListeners = (parent, callback) => {
     return child.field.name === 'tabOrderMode';
   });
   tabOrder.changes.push(callback);
+
+  const overviewMap = behaviour.children.find((child) => {
+    return child.field.name === 'overviewMap';
+  });
+  overviewMap.children.forEach((child) => {
+    child.changes.push(callback);
+  });
 };
 
 /**

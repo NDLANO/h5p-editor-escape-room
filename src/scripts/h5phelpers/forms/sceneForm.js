@@ -27,6 +27,18 @@ const DEFAULT_HOTSPOT_MAX_WIDTH = 2000;
 const DEFAULT_HOTSPOT_MAX_HEIGHT = 2000;
 
 /**
+ * Check if overview map is active and has an image.
+ * @param {object[]} formChildren Children widgets of editor form.
+ * @returns {boolean} True if scenes can be positioned on overview map.
+ */
+const hasOverviewMap = (formChildren) => {
+  const behaviour = formChildren.find((child) => child.field?.name === 'behaviour');
+  const overviewMap = behaviour?.params?.overviewMap;
+
+  return overviewMap?.show === true && !!overviewMap.image?.path;
+};
+
+/**
  * Creates scene form and appends it to wrapper
  * @param {object} field Field to display in form.
  * @param {object} params Parameters from form.
@@ -34,11 +46,15 @@ const DEFAULT_HOTSPOT_MAX_HEIGHT = 2000;
  * @param {object} parent Parent field.
  */
 export const createSceneForm = (field, params, wrapper, parent) => {
+  // Will be reset by processSemanticsChunk, but required for finding overview map image
+  const formChildren = parent.children;
+
   const sceneField = getSceneField(field);
   const hiddenSceneFields = [
     'sceneId',
     'cameraStartPosition',
     'interactions',
+    'overviewMapMarker',
   ];
 
   const sceneFields = sceneField.field.fields.filter((sceneField) => {
@@ -51,6 +67,24 @@ export const createSceneForm = (field, params, wrapper, parent) => {
     wrapper,
     parent,
   );
+
+  if (!hasOverviewMap(formChildren)) {
+    return;
+  }
+
+  // Separate parent keeps form children reachable, so coordinate selector can resolve path to overview map image
+  const overviewMapParent = {
+    parent: { children: formChildren },
+    passReadies: false,
+    children: [],
+    ready(callback) {
+      this.readies.push(callback);
+    },
+  };
+
+  const markerField = sceneField.field.fields.find((sceneField) => sceneField.name === 'overviewMapMarker');
+  H5PEditor.processSemanticsChunk([markerField], params, wrapper, overviewMapParent);
+  parent.children.push(...overviewMapParent.children);
 };
 
 /**
